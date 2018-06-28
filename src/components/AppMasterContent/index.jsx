@@ -1,30 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import logo from './logo.svg';
-import './index.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './index.css'
 import { testAction } from './../../actions/mock'
-class AppMainContent extends Component {
-    componentWillMount () {
-        this.props.dispatch(testAction('testing'));
-    }  
+import Header from './../Header'
+import Footer from './../Footer'
+import Home from './../Home'
 
-    componentDidMount () {
-        console.log(this.props.mock.testData)
-    }
+class AppMainContent extends Component {
     render() {
-        console.log(this.props.mock.testData)
         return (
             <div className="zomato-lite">
-                
+                <Header />
+                <Home />
+                <Footer />
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        mock: state.mockReducer
-    };
-}
-
-export default connect(mapStateToProps)(AppMainContent);
+export default AppMainContent

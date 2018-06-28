@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import mockReducer from './mock'
+import search from './search'
 
 const allReducers = combineReducers({
-    mockReducer
+    search
 });
 
 export default allReducers
