@@ -15,19 +15,17 @@ class Home extends Component {
 
     render () {
         return (
-            <div>
-                <Row>
-                <Col lg={3}/>
-                <Col lg={6}>
-                <SearchBar />
-                </Col>
-                <Col lg={3}/>
-                </Row>
-                <Row>
-                <ResultPanel />
-                </Row>
-                <ModalCitySelection />
-            </div>
+                <div>
+                    <Row>
+                        <Col lgOffset={3} lg={6}>
+                            <SearchBar />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <ResultPanel />
+                    </Row>
+                    <ModalCitySelection />
+                </div>
         )
     }
 }

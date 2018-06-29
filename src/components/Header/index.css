@@ -1,12 +1,7 @@
-.marginTop {
-    margin-top: 1em
-}
-
 .headerBorder {
     border-bottom-style: ridge;
-    overflow: hidden;
 }
 
 .padding {
-    padding: 0 10px
+    padding: 1em 2em
 }
