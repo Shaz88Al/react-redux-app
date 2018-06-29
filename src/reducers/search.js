@@ -8,7 +8,12 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
       case 'SELECTED_CITY':
-        return { ...state, isSelected: action.isSelected, selection: action.payload }
+        return { 
+          ...state, 
+          isSelected: action.isSelected, 
+          selection: action.payload, 
+          cityPopUp: action.cityPopUp 
+        }
 
       case 'FETCH_LOCATION_SUCCESS':
         return { ...state, locationDetails: action.payload}
