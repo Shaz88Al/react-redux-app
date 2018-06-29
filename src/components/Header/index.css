@@ -2,12 +2,9 @@
     margin-top: 1em
 }
 
-.alignRight {
-    text-align: right
-}
-
-.alignLeft {
-    text-align: left
+.headerBorder {
+    border-bottom-style: ridge;
+    overflow: hidden;
 }
 
 .padding {

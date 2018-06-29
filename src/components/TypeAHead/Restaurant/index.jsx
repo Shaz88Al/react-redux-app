@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
+import { Row, Col, Badge } from 'react-bootstrap'
 import { connect } from "react-redux";
-import OptionTemplate from './OptionTemplate'
-import { fetchCity, selectedCity, fetchLocation, resetLocationDetails } from './../../../actions/search'
+import { selectedRestaurant, fetchRestaurant } from './../../../actions/search'
+
 class TypeAHeadCity extends Component {
     constructor (props) {
         super (props)
@@ -16,7 +17,7 @@ class TypeAHeadCity extends Component {
 
     _handleSearch = (query) => {
         this.setState({isLoading: true});
-        this.props.dispatch(fetchCity(query))
+        this.props.dispatch(fetchRestaurant(query))
             .then((options) => {
                 this.setState({
                 isLoading: false,
@@ -26,40 +27,50 @@ class TypeAHeadCity extends Component {
     }
 
     _renderMenuItemChildren (option, props, index) {
+        const ratingColor = `#${option.user_rating.rating_color}`
+        const rating = option.user_rating.aggregate_rating
         return (
-            <div key="name">
-                {option.name}
-            </div>
+            <Row key="name">
+                <Col lg={4}>
+                    <Highlighter key='name' search={props.text}>
+                        {option.name}
+                    </Highlighter>
+                    <div>
+                        <small>
+                            {option.location.locality}
+                        </small>
+                    </div>
+                </Col>
+                <Col lg={4}/>
+                <Col lg={4}>
+                    <Badge style={{color: ratingColor}}>{rating}</Badge>
+                    <div>
+                        <small>
+                            {option.cuisines}
+                        </small>
+                    </div>
+                </Col>
+            </Row>
         )
     }
 
     handleChange (selection) {
-        const { dispatch } = this.props
-        localStorage.setItem('selectedCity', JSON.stringify(selection))
-        dispatch(selectedCity(selection))
-        if (selection.length) {
-            dispatch(fetchLocation(selection[0].name))
-        } else {
-            dispatch(resetLocationDetails())
-        }
-        
+        this.props.dispatch(selectedRestaurant(selection))
     }
 
     render () {
         
-        const selectedCity = localStorage.getItem('selectedCity') ? JSON.parse(localStorage.getItem('selectedCity')) : []
         return (
             <AsyncTypeahead
                 {...this.state} 
                 onChange={(selection) => this.handleChange(selection)}
-                ref='typeaheadCity'
+                ref='typeaheadRestaurant'
                 minLength={3}
                 labelKey="name"
                 onSearch={this._handleSearch}
-                placeholder='Enter City Name'
+                placeholder='Enter Restaurant'
                 options={this.state.options}
                 selectHintOnEnter={true}
-                selected={selectedCity || []}
                 renderMenuItemChildren={(option, props, index) => this._renderMenuItemChildren(option, props, index)}
             />
         )

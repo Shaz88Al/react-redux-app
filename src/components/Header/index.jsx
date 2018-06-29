@@ -6,18 +6,15 @@ import './index.css'
 class Header extends Component {
     render () {
         return (
-            <div>
+            <div className="headerBorder">
                 <Row bsClass="marginTop">
                     <Col lg={2} bsClass="padding col">
-                        <h2>
+                        <h4>
                             ZOMATO
-                        </h2>    
+                        </h4>    
                     </Col>
                     <Col lg={8} />
                     <Col lg={2} bsClass="padding col">
-                        <label >
-                            Change City
-                        </label>
                         <TypeAhead />
                     </Col>
                 </Row> 
