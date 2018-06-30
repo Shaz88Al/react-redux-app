@@ -1,4 +1,9 @@
 .row-style {
     border-bottom-style: inset;
-    margin-bottom: 1em;
+    padding: .5em 0;
+    cursor: pointer;
+}
+
+.row-style :hover {
+    background-color: aliceblue;
 }

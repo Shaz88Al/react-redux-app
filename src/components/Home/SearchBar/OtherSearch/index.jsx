@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Row, Col} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Typeahead, Highlighter } from 'react-bootstrap-typeahead'
-import { fetchSearchResult } from './../../../../actions/search'
+import { fetchSearchResult, searchObject } from './../../../../actions/search'
 
 class OtherSearch extends Component {
     changeObjectKey (array) {
@@ -37,7 +37,9 @@ class OtherSearch extends Component {
     }
 
     handleChange (selection) {
-        this.props.dispatch(fetchSearchResult(selection))
+        const { dispatch } = this.props
+        dispatch(searchObject(selection))
+        dispatch(fetchSearchResult(selection))
     }
 
     render () {

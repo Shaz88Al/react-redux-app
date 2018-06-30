@@ -4,7 +4,7 @@ export const fetchCity = queryParam => {
         try {
             dispatch(fetchCityInprogress(true))
             let data = await callCityApi(queryParam);
-            var json = await data.json();
+            let json = await data.json();
             dispatch(fetchCitySuccess(json.location_suggestions));
             return json.location_suggestions
         } catch (error) {
@@ -62,7 +62,7 @@ export const fetchLocation = queryParam => {
         try {
             dispatch(fetchLocationInprogress(true))
             let data = await callLocationApi(queryParam);
-            var json = await data.json();
+            let json = await data.json();
             dispatch(fetchLocationSuccess(json.location_suggestions));
             return json.location_suggestions
         } catch (error) {
@@ -118,7 +118,7 @@ export const fetchRestaurantDetails = queryParam => {
             dispatch(fetchRestaurantDetailsInprogress(true))
             const resId = queryParam[0].R.res_id
             let data = await callRestaurantDetailsApi(resId);
-            var json = await data.json();
+            let json = await data.json();
             dispatch(fetchRestaurantDetailsSuccess(json));
             return json
         } catch (error) {
@@ -173,7 +173,7 @@ export const fetchRestaurant = queryParam => {
         try {
             const { search } = getState()
             let data = await callSearchRestaurantApi(queryParam, search.locationDetails[0].entity_id);
-            var json = await data.json();
+            let json = await data.json();
             return getInnerObject(json.restaurants, 'restaurant')
         } catch (error) {
             console.log(error)
@@ -214,7 +214,7 @@ export const fetchCuisines = queryParam => {
         try {
             dispatch(fetchCuisinesInprogress(true))
             let data = await callCuisinesApi(queryParam);
-            var json = await data.json();
+            let json = await data.json();
             const updatedObject = getInnerObject(json.cuisines, 'cuisine', 'objectType')
             dispatch(fetchCuisinesSuccess(updatedObject));
             return json
@@ -264,7 +264,7 @@ export const fetchCategory = () => {
         try {
             dispatch(fetchCategoryInprogress(true))
             let data = await callCategoryApi();
-            var json = await data.json();
+            let json = await data.json();
             const updatedObject = getInnerObject(json.categories, 'categories', 'objectType')
             dispatch(fetchCategorySuccess(updatedObject));
             return json
@@ -313,9 +313,9 @@ export const fetchSearchResult = (selection) => {
     return async function(dispatch, getState) {
         try {
             dispatch(fetchSearchResultInprogress(true))
-            const { search } = getState()
-            let data = await callSearchResultApi(selection, search.locationDetails[0].entity_id);
-            var json = await data.json();
+            const { locationDetails, sortBy, order } = getState().search
+            let data = await callSearchResultApi(selection, locationDetails[0].entity_id, sortBy, order);
+            let json = await data.json();
             const updatedObject = getInnerObject(json.restaurants, 'restaurant')
             dispatch(fetchSearchResultSuccess(updatedObject));
             return json
@@ -348,10 +348,10 @@ const fetchSearchResultFailure = (response) => {
     }
 }
 
-const callSearchResultApi = (selection, entity_id) => {
+const callSearchResultApi = (selection, entity_id,sortBy, order) => {
     const queryParamKey = selection[0].objectType
     const queryParamValue = selection[0].id
-    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${entity_id}&${queryParamKey}=${queryParamValue}`
+    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${entity_id}&${queryParamKey}=${queryParamValue}&sort=${sortBy}&order=${order}`
     const method = 'get'
     const userKey = 'a61b26646d1403aee60d8421452ba63c'
     return fetch(url, {
@@ -365,5 +365,26 @@ const callSearchResultApi = (selection, entity_id) => {
 export const resetSearch = () => {
     return {
         type: 'RESET_SEARCH_RESULT'
+    }
+}
+
+export const searchObject = (selection) => {
+    return {
+        type: 'SEARCH_OBJECT',
+        payload: selection
+    }
+}
+
+export const updateSort = (value) => {
+    return {
+        type: 'UPDATE_SORT',
+        payload: value
+    }
+}
+
+export const updateOrder = (value) => {
+    return {
+        type: 'UPDATE_ORDER',
+        payload: value
     }
 }

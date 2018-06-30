@@ -7,7 +7,10 @@ const initialState = {
   restaurantDetails: [],
   cuisinesTypes: [],
   categoryTypes: [],
-  searchResult: []
+  searchResult: [],
+  sortBy: 'cost',
+  order: 'asc',
+  searchObject: {}
 }
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -42,6 +45,15 @@ export default function(state = initialState, action) {
 
       case 'RESET_SEARCH_RESULT':
         return { ...state, searchResult: [] }
+      
+      case 'UPDATE_ORDER':
+        return { ...state, order: action.payload}
+      
+      case 'UPDATE_SORT':
+        return { ...state, sortBy: action.payload}
+
+      case 'SEARCH_OBJECT':
+        return { ...state, searchObject: action.payload}
 
       default:
         return state;
