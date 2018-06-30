@@ -38,7 +38,7 @@ class ModalRestaurantDetails extends Component {
                                 <div>
                                     { 
                                         details.user_rating ? 
-                                        <Badge style={{ backgroundColor: 'mediumaquamarine', color: `#${details.user_rating.rating_color}`}}>
+                                        <Badge style={{ backgroundColor: `#${details.user_rating.rating_color}`}}>
                                             { details.user_rating.aggregate_rating }
                                         </Badge> 
                                         : 'Not Ratings Available'

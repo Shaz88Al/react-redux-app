@@ -36,7 +36,7 @@ class ResultPanel extends Component {
                         </div>
                     </Col>
                     <Col lg={4} lgOffset={4}>
-                        <Badge style={{backgroundColor: 'mediumaquamarine', color: `#${res.user_rating.rating_color}`}}>
+                        <Badge style={{backgroundColor: `#${res.user_rating.rating_color}`}}>
                             {res.user_rating.aggregate_rating}
                         </Badge>
                         <div>
