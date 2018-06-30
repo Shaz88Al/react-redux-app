@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Row, Col } from 'react-bootstrap'
-import { connect } from "react-redux";
+import { Row, Col } from 'react-bootstrap'
 import ModalCitySelection from './ModalCitySelection'
 import SearchBar from './SearchBar'
 import ResultPanel from './ResultPanel'

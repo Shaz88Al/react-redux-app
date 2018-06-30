@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import RestaurantSearch from './Restaurant'
 import OtherSearch from './OtherSearch'
 import './index.css'

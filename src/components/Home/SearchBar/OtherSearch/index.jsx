@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Row, Col} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Typeahead, Highlighter } from 'react-bootstrap-typeahead'
 import { fetchSearchResult, searchObject } from './../../../../actions/search'

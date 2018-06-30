@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, ButtonGroup, Row, Col } from 'react-bootstrap'
+import { Modal, Button, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import './index.css';
 import TypeAhead from './../../TypeAHead/City'

@@ -55,6 +55,9 @@ export default function(state = initialState, action) {
       case 'SEARCH_OBJECT':
         return { ...state, searchObject: action.payload}
 
+      case 'RESET_SEARCH':
+        return { ...state, searchResult: [] }
+
       default:
         return state;
     }

@@ -194,14 +194,6 @@ const callSearchRestaurantApi = (queryParam, entityId) => {
     })
 }
 
-const getRestaurant = (restaurants) => {
-    const updatedObject = []
-    restaurants.forEach((obj) => {
-        updatedObject.push(obj.restaurant)
-    })
-    return updatedObject
-}
-
 export const selectedRestaurant = (selection) => {
     return {
         type: 'SELECTED_RESTAURANT',
@@ -386,5 +378,11 @@ export const updateOrder = (value) => {
     return {
         type: 'UPDATE_ORDER',
         payload: value
+    }
+}
+
+export const resetResult = () => {
+    return {
+        type: 'RESET_SEARCH'
     }
 }

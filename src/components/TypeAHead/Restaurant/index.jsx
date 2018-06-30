@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
 import { Row, Col, Badge } from 'react-bootstrap'
 import { connect } from "react-redux";
-import { selectedRestaurant, fetchRestaurant, fetchRestaurantDetails } from './../../../actions/search'
+import { selectedRestaurant, 
+    fetchRestaurant, 
+    fetchRestaurantDetails,
+    resetSearch
+} from './../../../actions/search'
 
 class TypeAHeadCity extends Component {
     constructor (props) {
@@ -13,6 +17,10 @@ class TypeAHeadCity extends Component {
             multiple: false,
             options: [],
         }
+    }
+
+    componentDidMount () {
+        this.props.dispatch(resetSearch())
     }
 
     _handleSearch = (query) => {
