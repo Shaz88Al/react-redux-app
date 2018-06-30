@@ -8,12 +8,12 @@ class Header extends Component {
         return (
             <div className="headerBorder">
                 <Row>
-                    <Col lg={2} bsClass="padding col">
+                    <Col lg={2} xs={6} bsClass="padding col">
                         <h4 className="title">
                             ZOMAAATO LITE
                         </h4>    
                     </Col>
-                    <Col lg={2} lgOffset={8} bsClass="padding col">
+                    <Col lg={2} xs={6} lgOffset={8} bsClass="padding col">
                         <TypeAhead />
                     </Col>
                 </Row>

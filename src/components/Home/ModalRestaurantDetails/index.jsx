@@ -53,15 +53,27 @@ class ModalRestaurantDetails extends Component {
                     <ModalRestaurantDetailsBody details={details}/>
                 </Modal.Body>
                 <Modal.Footer>
-                <ButtonGroup>
+                <Row>
+                    <Col lg={3} xs={12} sm={12}>
                     <Button 
+                        block 
+                        style={{marginLeft: "0px"}} 
+                        bsStyle="warning" 
+                        onClick={() => this.closeModal()}
+                    >
+                        {"Close & Check other Option"}
+                    </Button>
+                    </Col>
+                    <Col lg={3} lgOffset={6} xs={12} sm={12}>
+                    <Button 
+                        block
                         bsStyle={zomatoOrder ? 'info' : 'success'} 
                         disabled={zomatoOrder ? true : false}
                     >
                         {zomatoOrder ? 'Online Order Not Available': 'Place Food Order Online'}
                     </Button>
-                    <Button bsStyle="warning" onClick={() => this.closeModal()}>Close and Check other Option</Button>
-                </ButtonGroup>
+                    </Col>
+                </Row>
                 </Modal.Footer>    
             </Modal>
         )

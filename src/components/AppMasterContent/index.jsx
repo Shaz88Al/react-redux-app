@@ -3,15 +3,18 @@ import './index.css'
 import Header from './../Header'
 import Footer from './../Footer'
 import Home from './../Home'
+import { Row, Col } from 'react-bootstrap'
 
 class AppMainContent extends Component {
     render() {
         return (
-            <div className="zomato-lite">
+            <Row className="zomaaato-lite">
+                <Col>
                 <Header />
                 <Home />
                 <Footer />
-            </div>
+                </Col>
+            </Row>
         );
     }
 }

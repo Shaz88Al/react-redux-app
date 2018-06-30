@@ -47,7 +47,7 @@ class OtherSearch extends Component {
             <Typeahead
                 labelKey="name"
                 options={searchObject}
-                placeholder="Enter a Cauisines, Category or Locality"
+                placeholder="Enter a Cuisines, Category or Locality"
                 renderMenuItemChildren={(option, props, index) => this.renderMenuItemChildren(option, props, index)}
                 onChange={(selection) => this.handleChange(selection)}
             />

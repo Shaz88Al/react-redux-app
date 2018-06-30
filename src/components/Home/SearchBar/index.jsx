@@ -25,10 +25,10 @@ class SearchBar extends Component {
                     <RestaurantSearch />
                     : <OtherSearch />
                 }
-                <Button bsStyle="link" onClick={() => this.handleClick()}>
+                <Button bsStyle="link" bsClass="link-style btn" onClick={() => this.handleClick()}>
                 {
                     this.state.searchByRestaurant ?
-                    "Click to Search by Cuisines, Category and Locality"
+                    "Click to Search by Cuisines, Category & Locality"
                     : "Click to Search by Restaurant"
                 }
                 </Button>

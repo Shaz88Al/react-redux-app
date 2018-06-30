@@ -30,10 +30,10 @@ class ModalCitySelection extends Component {
             <Modal show={!this.props.isSelected && this.props.cityPopUp} onHide={this.handleClose} bsSize="large" backdrop="static">
                 <Modal.Body>
                     <Row>   
-                        <Col lg={selectedCity.length ? 11 : 12}>
+                        <Col lg={selectedCity.length ? 11 : 12} xs={9}>
                             <TypeAhead />
                         </Col>
-                        <Col lg={1} hidden={!selectedCity.length}>
+                        <Col lg={1} hidden={!selectedCity.length} xs={3}>
                             <Button bsStyle="primary" onClick={() => this.handleClick(selectedCity)}> <i className="glyphicon glyphicon-arrow-right"/></Button>
                         </Col>
                     </Row>

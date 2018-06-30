@@ -17,7 +17,7 @@ class Home extends Component {
         return (
                 <div>
                     <Row bsClass="home-style row">
-                        <Col lgOffset={3} lg={6}>
+                        <Col lgOffset={3} lg={6} xsOffset={2} xs={8}>
                             <SearchBar />
                         </Col>
                     </Row>
