@@ -1,0 +1,10 @@
+.home-style {
+    background-image: url(https://www.foodiesfeed.com/wp-content/uploads/2018/06/salmon.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home-result-style {
+    padding-top: 1em;
+    background-color: #EDF1F4;
+}

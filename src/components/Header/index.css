@@ -1,7 +1,14 @@
 .headerBorder {
     border-bottom-style: ridge;
+    background-color: #CCE2FF;
 }
 
 .padding {
     padding: 1em 2em
+}
+
+.title {
+    font-style: italic;
+    color: #BA1E2B;
+    font-weight: bold;
 }

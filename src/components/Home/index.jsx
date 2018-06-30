@@ -5,7 +5,7 @@ import ModalCitySelection from './ModalCitySelection'
 import SearchBar from './SearchBar'
 import ResultPanel from './ResultPanel'
 import ModalRestaurantDetails from './ModalRestaurantDetails'
-
+import './index.css'
 class Home extends Component {
     constructor (props) {
         super(props)
@@ -17,12 +17,12 @@ class Home extends Component {
     render () {
         return (
                 <div>
-                    <Row>
+                    <Row bsClass="home-style row">
                         <Col lgOffset={3} lg={6}>
                             <SearchBar />
                         </Col>
                     </Row>
-                    <Row>
+                    <Row bsClass="home-result-style row">
                         <Col lgOffset={2} lg={8}>
                             <ResultPanel />
                         </Col>
