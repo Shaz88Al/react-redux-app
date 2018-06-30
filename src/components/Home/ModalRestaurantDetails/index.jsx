@@ -4,11 +4,29 @@ import { connect } from "react-redux";
 import ModalRestaurantDetailsBody from './ModalRestaurantDetailsBody'
 
 class ModalRestaurantDetails extends Component {
+    constructor (props) {
+        super(props)
+        this.state ={
+            showModal: false
+        }
+    }
+    componentWillReceiveProps (nextProps) {
+        if ( nextProps.selectedRestaurant.length > 0 ) {
+            this.setState({
+                showModal: true
+            })
+        }
+    }
+    closeModal () {
+        this.setState( {
+            showModal: false
+        })
+    }
     render () {
         const details = this.props.details
         const zomatoOrder = details.is_zomato_book_res
         return (
-            <Modal show={this.props.selectedRestaurant.length>0} bsSize="large" backdrop="static" >
+            <Modal show={this.state.showModal} bsSize="large" backdrop="static" >
                 <Modal.Header>
                     <Modal.Title>
                         <Row>
@@ -42,7 +60,7 @@ class ModalRestaurantDetails extends Component {
                     >
                         {zomatoOrder ? 'Online Order Not Available': 'Place Food Order Online'}
                     </Button>
-                    <Button bsStyle="warning">Close and Check other Option</Button>
+                    <Button bsStyle="warning" onClick={() => this.closeModal()}>Close and Check other Option</Button>
                 </ButtonGroup>
                 </Modal.Footer>    
             </Modal>

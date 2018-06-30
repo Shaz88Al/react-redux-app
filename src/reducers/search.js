@@ -3,7 +3,7 @@ const initialState = {
   selection: [],
   cityPopUp: true,
   locationDetails: [],
-  selectedRestaurant: [],
+  selectedRestaurant: [{name: null}],
   restaurantDetails: []
 }
 export default function(state = initialState, action) {
