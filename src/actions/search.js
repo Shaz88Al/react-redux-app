@@ -111,6 +111,62 @@ const callLocationApi = (queryParam) => {
     })
 }
 
+export const fetchRestaurantDetails = queryParam => {
+    return async function(dispatch) {
+        try {
+            dispatch(fetchRestaurantDetailsInprogress(true))
+            const resId = queryParam[0].R.res_id
+            let data = await callRestaurantDetailsApi(resId);
+            var json = await data.json();
+            dispatch(fetchRestaurantDetailsSuccess(json));
+            return json
+        } catch (error) {
+            console.log(error)
+            return dispatch(fetchRestaurantDetailsFailure());
+        } finally {
+            dispatch(fetchRestaurantDetailsInprogress(false))
+        }
+    }
+}; 
+
+const fetchRestaurantDetailsInprogress = (flag) => {
+    return {
+        type: 'FETCH_RESTAURANT_DETAILS_INPROGRESS',
+        payload: flag
+    }
+}
+
+const fetchRestaurantDetailsSuccess = (response) => {
+    return {
+        type: 'FETCH_RESTAURANT_DETAILS_SUCCESS',
+        payload: response
+    }
+}
+
+const fetchRestaurantDetailsFailure = (response) => {
+    return {
+        type: 'FETCH_LOCATION_FAILURE',
+    }
+}
+
+export const resetRestaurantDetails = () => {
+    return {
+        type: 'RESET_RESTAURANT_DETAILS'
+    }
+}
+
+const callRestaurantDetailsApi = (queryParam) => {
+    const url = `https://developers.zomato.com/api/v2.1/restaurant?res_id=${queryParam}`
+    const method = 'get'
+    const userKey = 'a61b26646d1403aee60d8421452ba63c'
+    return fetch(url, {
+        method: method,
+        headers: new Headers({
+            'user-key': userKey
+        })
+    })
+}
+
 export const fetchRestaurant = queryParam => {
     return async function(dispatch, getState) {
         try {

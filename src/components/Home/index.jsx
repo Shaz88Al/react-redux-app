@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import ModalCitySelection from './ModalCitySelection'
 import SearchBar from './SearchBar'
 import ResultPanel from './ResultPanel'
+import ModalRestaurantDetails from './ModalRestaurantDetails'
 
 class Home extends Component {
     constructor (props) {
@@ -25,6 +26,7 @@ class Home extends Component {
                         <ResultPanel />
                     </Row>
                     <ModalCitySelection />
+                    <ModalRestaurantDetails />
                 </div>
         )
     }

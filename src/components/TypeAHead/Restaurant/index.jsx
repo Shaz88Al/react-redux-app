@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
 import { Row, Col, Badge } from 'react-bootstrap'
 import { connect } from "react-redux";
-import { selectedRestaurant, fetchRestaurant } from './../../../actions/search'
+import { selectedRestaurant, fetchRestaurant, fetchRestaurantDetails } from './../../../actions/search'
 
 class TypeAHeadCity extends Component {
     constructor (props) {
@@ -56,6 +56,7 @@ class TypeAHeadCity extends Component {
 
     handleChange (selection) {
         this.props.dispatch(selectedRestaurant(selection))
+        this.props.dispatch(fetchRestaurantDetails(selection))
     }
 
     render () {

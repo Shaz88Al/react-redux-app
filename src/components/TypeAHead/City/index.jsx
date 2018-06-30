@@ -42,7 +42,6 @@ class TypeAHeadCity extends Component {
         } else {
             dispatch(resetLocationDetails())
         }
-        
     }
 
     render () {

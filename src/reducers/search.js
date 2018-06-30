@@ -3,7 +3,8 @@ const initialState = {
   selection: [],
   cityPopUp: true,
   locationDetails: [],
-  selectedRestaurant: []
+  selectedRestaurant: [],
+  restaurantDetails: []
 }
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -16,13 +17,17 @@ export default function(state = initialState, action) {
         }
 
       case 'FETCH_LOCATION_SUCCESS':
-        return { ...state, locationDetails: action.payload}
+        return { ...state, locationDetails: action.payload }
 
       case 'RESET_LOCATION':
-        return { ...state, locationDetails: []}
+        return { ...state, locationDetails: [] }
       
       case 'SELECTED_RESTAURANT':
-        return { ...state, selectedRestaurant: action.payload}
+        return { ...state, selectedRestaurant: action.payload }
+      
+      case 'FETCH_RESTAURANT_DETAILS_SUCCESS':
+        return { ...state, restaurantDetails: action.payload }
+        
       default:
         return state;
     }
