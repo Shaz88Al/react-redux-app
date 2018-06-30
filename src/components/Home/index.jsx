@@ -23,7 +23,10 @@ class Home extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <ResultPanel />
+                        <Col lgOffset={2} lg={8}>
+                            <ResultPanel />
+                        </Col>
+                        
                     </Row>
                     <ModalCitySelection />
                     <ModalRestaurantDetails />

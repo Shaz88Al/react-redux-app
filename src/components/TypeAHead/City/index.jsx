@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { connect } from "react-redux";
 import OptionTemplate from './OptionTemplate'
-import { fetchCity, selectedCity, fetchLocation, resetLocationDetails } from './../../../actions/search'
+import { 
+    fetchCity, 
+    selectedCity, 
+    fetchLocation, 
+    resetLocationDetails,
+    fetchCuisines,
+    fetchCategory
+} from './../../../actions/search'
 class TypeAHeadCity extends Component {
     constructor (props) {
         super (props)
@@ -39,6 +46,8 @@ class TypeAHeadCity extends Component {
         dispatch(selectedCity(selection))
         if (selection.length) {
             dispatch(fetchLocation(selection[0].name))
+            dispatch(fetchCuisines(selection[0].id))
+            dispatch(fetchCategory())
         } else {
             dispatch(resetLocationDetails())
         }

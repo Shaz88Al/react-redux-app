@@ -3,7 +3,7 @@ import { Modal, Button, ButtonGroup, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import './index.css';
 import TypeAhead from './../../TypeAHead/City'
-import { selectedCity, fetchLocation } from './../../../actions/search'
+import { selectedCity, fetchLocation, fetchCuisines, fetchCategory } from './../../../actions/search'
 class ModalCitySelection extends Component {
     constructor (props) {
         super(props)
@@ -17,8 +17,11 @@ class ModalCitySelection extends Component {
     }
 
     handleClick (selection) {
-        this.props.dispatch(selectedCity(selection))
-        this.props.dispatch(fetchLocation(selection[0].name))
+        const { dispatch } = this.props
+        dispatch(selectedCity(selection))
+        dispatch(fetchLocation(selection[0].name))
+        dispatch(fetchCuisines(selection[0].id))
+        dispatch(fetchCategory())
     }
 
     render () {

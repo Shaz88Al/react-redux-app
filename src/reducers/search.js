@@ -4,7 +4,10 @@ const initialState = {
   cityPopUp: true,
   locationDetails: [],
   selectedRestaurant: [{name: null}],
-  restaurantDetails: []
+  restaurantDetails: [],
+  cuisinesTypes: [],
+  categoryTypes: [],
+  searchResult: []
 }
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -27,7 +30,19 @@ export default function(state = initialState, action) {
       
       case 'FETCH_RESTAURANT_DETAILS_SUCCESS':
         return { ...state, restaurantDetails: action.payload }
-        
+      
+      case 'FETCH_CUISINES_SUCCESS':
+        return { ...state, cuisinesTypes: action.payload}
+
+      case 'FETCH_CATEGORY_SUCCESS':
+        return { ...state, categoryTypes: action.payload}
+      
+      case 'FETCH_SEARCH_RESULT_SUCCESS':
+        return { ...state, searchResult: action.payload }
+
+      case 'RESET_SEARCH_RESULT':
+        return { ...state, searchResult: [] }
+
       default:
         return state;
     }

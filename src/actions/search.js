@@ -1,3 +1,4 @@
+import { getInnerObject } from './../utils'
 export const fetchCity = queryParam => {
     return async function(dispatch) {
         try {
@@ -173,7 +174,7 @@ export const fetchRestaurant = queryParam => {
             const { search } = getState()
             let data = await callSearchRestaurantApi(queryParam, search.locationDetails[0].entity_id);
             var json = await data.json();
-            return getRestaurant(json.restaurants)
+            return getInnerObject(json.restaurants, 'restaurant')
         } catch (error) {
             console.log(error)
         }
@@ -205,5 +206,164 @@ export const selectedRestaurant = (selection) => {
     return {
         type: 'SELECTED_RESTAURANT',
         payload: selection,
+    }
+}
+
+export const fetchCuisines = queryParam => {
+    return async function(dispatch, getState) {
+        try {
+            dispatch(fetchCuisinesInprogress(true))
+            let data = await callCuisinesApi(queryParam);
+            var json = await data.json();
+            const updatedObject = getInnerObject(json.cuisines, 'cuisine', 'objectType')
+            dispatch(fetchCuisinesSuccess(updatedObject));
+            return json
+        } catch (error) {
+            console.log(error)
+            return dispatch(fetchCuisinesFailure());
+        } finally {
+            dispatch(fetchCuisinesInprogress(false))
+        }
+    }
+}; 
+
+const fetchCuisinesInprogress = (flag) => {
+    return {
+        type: 'FETCH_CUISINES_INPROGRESS',
+        payload: flag
+    }
+}
+
+const fetchCuisinesSuccess = (response) => {
+    return {
+        type: 'FETCH_CUISINES_SUCCESS',
+        payload: response
+    }
+}
+
+const fetchCuisinesFailure = (response) => {
+    return {
+        type: 'FETCH_CUISINES_FAILURE',
+    }
+}
+
+const callCuisinesApi = (queryParam) => {
+    const url = `https://developers.zomato.com/api/v2.1/cuisines?city_id=${queryParam}`
+    const method = 'get'
+    const userKey = 'a61b26646d1403aee60d8421452ba63c'
+    return fetch(url, {
+        method: method,
+        headers: new Headers({
+            'user-key': userKey
+        })
+    })
+}
+
+export const fetchCategory = () => {
+    return async function(dispatch) {
+        try {
+            dispatch(fetchCategoryInprogress(true))
+            let data = await callCategoryApi();
+            var json = await data.json();
+            const updatedObject = getInnerObject(json.categories, 'categories', 'objectType')
+            dispatch(fetchCategorySuccess(updatedObject));
+            return json
+        } catch (error) {
+            console.log(error)
+            return dispatch(fetchCategoryFailure());
+        } finally {
+            dispatch(fetchCategoryInprogress(false))
+        }
+    }
+}; 
+
+const fetchCategoryInprogress = (flag) => {
+    return {
+        type: 'FETCH_CATEGORY_INPROGRESS',
+        payload: flag
+    }
+}
+
+const fetchCategorySuccess = (response) => {
+    return {
+        type: 'FETCH_CATEGORY_SUCCESS',
+        payload: response
+    }
+}
+
+const fetchCategoryFailure = (response) => {
+    return {
+        type: 'FETCH_CATEGORY_FAILURE',
+    }
+}
+
+const callCategoryApi = () => {
+    const url = `https://developers.zomato.com/api/v2.1/categories`
+    const method = 'get'
+    const userKey = 'a61b26646d1403aee60d8421452ba63c'
+    return fetch(url, {
+        method: method,
+        headers: new Headers({
+            'user-key': userKey
+        })
+    })
+}
+
+export const fetchSearchResult = (selection) => {
+    return async function(dispatch, getState) {
+        try {
+            dispatch(fetchSearchResultInprogress(true))
+            const { search } = getState()
+            let data = await callSearchResultApi(selection, search.locationDetails[0].entity_id);
+            var json = await data.json();
+            const updatedObject = getInnerObject(json.restaurants, 'restaurant')
+            dispatch(fetchSearchResultSuccess(updatedObject));
+            return json
+        } catch (error) {
+            console.log(error)
+            return dispatch(fetchSearchResultFailure());
+        } finally {
+            dispatch(fetchSearchResultInprogress(false))
+        }
+    }
+}; 
+
+const fetchSearchResultInprogress = (flag) => {
+    return {
+        type: 'FETCH_SEARCH_RESULT_INPROGRESS',
+        payload: flag
+    }
+}
+
+const fetchSearchResultSuccess = (response) => {
+    return {
+        type: 'FETCH_SEARCH_RESULT_SUCCESS',
+        payload: response
+    }
+}
+
+const fetchSearchResultFailure = (response) => {
+    return {
+        type: 'FETCH_SEARCH_RESULT_FAILURE',
+    }
+}
+
+const callSearchResultApi = (selection, entity_id) => {
+    const queryParamKey = selection[0].objectType
+    const queryParamValue = selection[0].id
+    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${entity_id}&${queryParamKey}=${queryParamValue}`
+    const method = 'get'
+    const userKey = 'a61b26646d1403aee60d8421452ba63c'
+    return fetch(url, {
+        method: method,
+        headers: new Headers({
+            'user-key': userKey
+        })
+    })
+}
+
+export const resetSearch = () => {
+    return {
+        type: 'RESET_SEARCH_RESULT'
     }
 }
