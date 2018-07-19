@@ -183,7 +183,7 @@ export const fetchRestaurant = queryParam => {
 
 
 const callSearchRestaurantApi = (queryParam, entityId) => {
-    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${entityId}&q=${queryParam}`
+    const url = `https://developers.zomato.com/api/v2.1/search?entity_type=city&entity_id=${entityId}&q=${queryParam}`
     const method = 'get'
     const userKey = 'a61b26646d1403aee60d8421452ba63c'
     return fetch(url, {
@@ -343,7 +343,7 @@ const fetchSearchResultFailure = (response) => {
 const callSearchResultApi = (selection, entity_id,sortBy, order) => {
     const queryParamKey = selection[0].objectType
     const queryParamValue = selection[0].id
-    const url = `https://developers.zomato.com/api/v2.1/search?entity_id=${entity_id}&${queryParamKey}=${queryParamValue}&sort=${sortBy}&order=${order}`
+    const url = `https://developers.zomato.com/api/v2.1/search?entity_type=city&entity_id=${entity_id}&${queryParamKey}=${queryParamValue}&sort=${sortBy}&order=${order}`
     const method = 'get'
     const userKey = 'a61b26646d1403aee60d8421452ba63c'
     return fetch(url, {
